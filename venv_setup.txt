@@ -1,0 +1,16 @@
+Note -- This is for Windows:
+$  python -m venv <your_env_name>
+$  source <your_env_name>/Scripts/acivate       activate.bat OR activate.ps1
+
+To end the venv:
+$  deactivate
+
+Source for above -- https://kimsereylam.com/python/2020/07/17/jupyter-notebooks-with-visual-studio-code.html#setup-the-environment &  https://stackoverflow.com/a/67872186
+    "python -m <module> <cmd> denotes that you are using an installed module, not a script. It will search site-packages for the interpreter being used" C:\Python310\Lib\site-packages
+virtualenv documentation -- https://virtualenv.pypa.io/en/legacy/userguide.html#activate-script
+
+
+
+Also might be worth looking into ipython-sql:
+    https://github.com/catherinedevlin/ipython-sql
+    Would allow me to run SQL commands in Jupyter Notebook?

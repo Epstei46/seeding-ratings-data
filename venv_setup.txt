@@ -1,16 +1,52 @@
-Note -- This is for Windows:
-$  python -m venv <your_env_name>
-$  source <your_env_name>/Scripts/acivate       activate.bat OR activate.ps1
+Note -- I added below 2 links most recently, likely more useful than 2 links below.
+Python instructions for virtualenv -- https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment
+virtualenv documentation -- https://virtualenv.pypa.io/en/legacy/userguide.html#activate-script
+
+Note -- This is for Windows: Suggest <your_env_name> = venv
+$  python -m venv <your_env_name> OR $  python3 -m venv <your_env_name>
+    <your_env_name> folder will be created in the folder you are in, and will contain folders for Lib/Scripts/include.
+    -- I would put this folder in your .gitignore. If you want to keep a note of it, can make a dependencies.txt file. Just make a note that you used a virtualenv/venv and installed the following dependencies: whatever, you, installed, like, sqlalchemy, pandas.
+$  source <your_env_name>/Scripts/acivate       activate.bat OR activate.ps1 & source may be unneeded?
+
+To install required libraries:
+$  pip install -r requirement.txt
+    Can install anything else as needed using pip or pip3 install, should go in venv folder.
 
 To end the venv:
 $  deactivate
 
 Source for above -- https://kimsereylam.com/python/2020/07/17/jupyter-notebooks-with-visual-studio-code.html#setup-the-environment &  https://stackoverflow.com/a/67872186
     "python -m <module> <cmd> denotes that you are using an installed module, not a script. It will search site-packages for the interpreter being used" C:\Python310\Lib\site-packages
-virtualenv documentation -- https://virtualenv.pypa.io/en/legacy/userguide.html#activate-script
+    This worked for me before even pip installing virtualenv, so doing that may be unneeded.
+
+
+
+
+ALTERNATIVELY, can fix it up so that we can just run $  virtualenv <your_env_name>
+WHAT DOES THIS DO? Instead of creating a venv folder in every project, can have one connected to your user directory that you can select in the VS Code Python interpreter (bottom left of screen) & Jupyter Notebook kernel (top right of screen).
+$  py -m pip install --user virtualenv
+    -- After doing this, got a message saying that virtualenv.exe was not on my PATH. That needs to be added to PATH so that I can run the following in the terminal: $  virtualenv --version
+    -- The  way to do that for Windows is -- https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho
+Then follow these instructions -- https://techinscribed.com/python-virtual-environment-in-vscode/
+    -- activate is a file in the venv folder. On Windows, $  source venv/Scripts/activate
+Once finished, File => close folder and close out of VS Code. Start it back up and open a different folder/project with a .py file, and you should now be able to select your venv in the VS Code Python interpreter (bottom left of screen)
+
+
+
+
+If you want to use the Jupyter Notebook extension with your virtualenv -- https://anbasile.github.io/posts/2017-06-25-jupyter-venv/ & if still having an issue, further discussion here https://stackoverflow.com/questions/58119823/jupyter-notebooks-in-visual-studio-code-does-not-use-the-active-virtual-environm
+$  pip install ipykernel
+    Above will take a solid minute, but allows us to install a new kernel (below). Tells where you it installs.
+$  ipython kernel install --user --name=<your_env_name>
+At this point, you can start jupyter, create a new notebook and select the kernel (top right, instead of python3.10 64bit, select venv (python3.10)) that lives inside your environment.
 
 
 
 Also might be worth looking into ipython-sql:
     https://github.com/catherinedevlin/ipython-sql
     Would allow me to run SQL commands in Jupyter Notebook?
+
+
+
+Can use SQLite Viewer extension/app to view some db files in VS Code, or use the website <https://sqliteviewer.app/>
+    NOTE -- This was inspired by DB Browser. That would require downloading onto your system, and then in a similar fashion you could view db files in your browser.
